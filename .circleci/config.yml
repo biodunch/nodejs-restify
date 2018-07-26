@@ -18,6 +18,8 @@ jobs:
 
       - run: npm install
 
+      - run: npm install eslint --save-dev
+
       - save_cache:
           paths:
             - node_modules
@@ -33,7 +35,6 @@ jobs:
 
         steps:
           - checkout
-          - run: npm install eslint --save-dev
           - run:
               name: Install Heroku
               command: bash .circleci/install_heroku.sh
