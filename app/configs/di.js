@@ -1,25 +1,17 @@
-'use strict';
+
 
 const serviceLocator = require('../lib/service_locator');
 const config = require('./configs')();
 
-serviceLocator.register('logger', () => {
-  return require('../lib/logger').create(config.application_logging);
-});
+serviceLocator.register('logger', () => require('../lib/logger').create(config.application_logging));
 
-serviceLocator.register('httpStatus', () => {
-  return require('http-status');
-});
+serviceLocator.register('httpStatus', () => require('http-status'));
 
-serviceLocator.register('mongoose', () => {
-  return require('mongoose');
-});
+serviceLocator.register('mongoose', () => require('mongoose'));
 
-serviceLocator.register('errs', () => {
-  return require('restify-errors');
-});
+serviceLocator.register('errs', () => require('restify-errors'));
 
-serviceLocator.register('birthdateService', (serviceLocator) => {
+serviceLocator.register('birthdateService', () => {
   const log = serviceLocator.get('logger');
   const mongoose = serviceLocator.get('mongoose');
   const httpStatus = serviceLocator.get('httpStatus');
@@ -29,7 +21,7 @@ serviceLocator.register('birthdateService', (serviceLocator) => {
   return new BirthdateService(log, mongoose, httpStatus, errs);
 });
 
-serviceLocator.register('userService', (serviceLocator) => {
+serviceLocator.register('userService', () => {
   const log = serviceLocator.get('logger');
   const mongoose = serviceLocator.get('mongoose');
   const httpStatus = serviceLocator.get('httpStatus');
@@ -39,7 +31,7 @@ serviceLocator.register('userService', (serviceLocator) => {
   return new UserService(log, mongoose, httpStatus, errs);
 });
 
-serviceLocator.register('birthdateController', (serviceLocator) => {
+serviceLocator.register('birthdateController', () => {
   const log = serviceLocator.get('logger');
   const httpStatus = serviceLocator.get('httpStatus');
   const birthdateService = serviceLocator.get('birthdateService');
@@ -48,7 +40,7 @@ serviceLocator.register('birthdateController', (serviceLocator) => {
   return new BirthdateController(log, birthdateService, httpStatus);
 });
 
-serviceLocator.register('userController', (serviceLocator) => {
+serviceLocator.register('userController', () => {
   const log = serviceLocator.get('logger');
   const httpStatus = serviceLocator.get('httpStatus');
   const userService = serviceLocator.get('userService');

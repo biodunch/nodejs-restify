@@ -1,4 +1,4 @@
-'use strict';
+
 
 class UserController {
   constructor(log, userService, httpSatus) {
@@ -20,7 +20,7 @@ class UserController {
   }
 
   async get(req, res) {
-    try{
+    try {
       const { username } = req.params;
       const result = await this.userService.getUser(username);
 
@@ -30,7 +30,6 @@ class UserController {
       res.send(err);
     }
   }
-
 }
 
 module.exports = UserController;

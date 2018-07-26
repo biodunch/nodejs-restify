@@ -1,4 +1,3 @@
-'use strict';
 
 class BirthdateService {
   constructor(log, mongoose, httpStatus, errs) {
@@ -10,12 +9,12 @@ class BirthdateService {
 
   async createBirthdate(username, body) {
     const Users = this.mongoose.model('Users');
-    const user = await Users.findOne({username});
-    const {birthdate, fullname} = body;
+    const user = await Users.findOne({ username });
+    const { birthdate, fullname } = body;
 
     if (!user) {
       const err = new this.errs.NotFoundError(
-        `User with username - ${username} does not exists`
+        `User with username - ${username} does not exists`,
       );
       return err;
     }
@@ -34,11 +33,11 @@ class BirthdateService {
 
   async getBirthdates(username) {
     const Users = this.mongoose.model('Users');
-    const user = await Users.findOne({username});
+    const user = await Users.findOne({ username });
 
     if (!user) {
       const err = new this.errs.NotFoundError(
-        `User with username - ${username} does not exists`
+        `User with username - ${username} does not exists`,
       );
       return err;
     }

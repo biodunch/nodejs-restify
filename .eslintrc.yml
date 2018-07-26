@@ -1,1 +1,17 @@
 extends: airbnb-base
+rules:
+  semi:
+    - error
+    - always
+  indent:
+    - error
+    - 2
+  comma-dangle:
+    - warn
+    - never
+  global-require:
+    - off
+  no-underscore-dangle:
+    - off
+  class-methods-use-this:
+    - off

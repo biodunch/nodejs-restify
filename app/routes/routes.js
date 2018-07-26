@@ -1,7 +1,6 @@
-'use strict';
+
 
 module.exports.register = (server, serviceLocator) => {
-
   server.post(
     {
       path: '/users',
@@ -11,8 +10,7 @@ module.exports.register = (server, serviceLocator) => {
         body: require('../validations/create_user')
       }
     },
-    (req, res, next) =>
-      serviceLocator.get('userController').create(req, res, next)
+    (req, res, next) => serviceLocator.get('userController').create(req, res, next),
   );
 
   server.get(
@@ -24,8 +22,7 @@ module.exports.register = (server, serviceLocator) => {
         params: require('../validations/get_birthdates-user.js')
       }
     },
-    (req, res, next) =>
-      serviceLocator.get('userController').get(req, res, next)
+    (req, res, next) => serviceLocator.get('userController').get(req, res, next),
   );
 
   server.get(
@@ -37,8 +34,7 @@ module.exports.register = (server, serviceLocator) => {
         params: require('../validations/get_birthdates-user.js')
       }
     },
-    (req, res, next) =>
-      serviceLocator.get('birthdateController').listAll(req, res, next)
+    (req, res, next) => serviceLocator.get('birthdateController').listAll(req, res, next),
   );
 
   server.post(
@@ -50,7 +46,6 @@ module.exports.register = (server, serviceLocator) => {
         body: require('../validations/create_birthdates')
       }
     },
-    (req, res, next) =>
-      serviceLocator.get('birthdateController').create(req, res, next)
+    (req, res, next) => serviceLocator.get('birthdateController').create(req, res, next),
   );
 };

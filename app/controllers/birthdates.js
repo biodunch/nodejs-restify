@@ -1,6 +1,3 @@
-'use strict';
-
-const serviceLocator = require('../lib/service_locator');
 
 class BirthdateController {
   constructor(log, birthdateService, httpSatus) {
@@ -11,15 +8,14 @@ class BirthdateController {
 
   async create(req, res) {
     try {
-      const {body} = req;
-      const {username} = req.params;
+      const { body } = req;
+      const { username } = req.params;
       const result = await this.birthdateService.createBirthdate(
         username,
-        body
+        body,
       );
-      if (result instanceof Error)
-        res.send(result);
-      else res.send(`${body.fullname}'s birthdate saved successfully!`)
+      if (result instanceof Error) res.send(result);
+      else res.send(`${body.fullname}'s birthdate saved successfully!`);
     } catch (err) {
       this.log.error(err.message);
       res.send(err);
@@ -28,7 +24,7 @@ class BirthdateController {
 
   async listAll(req, res) {
     try {
-      const {username} = req.params;
+      const { username } = req.params;
       const result = await this.birthdateService.getBirthdates(username);
       res.send(result);
     } catch (err) {
